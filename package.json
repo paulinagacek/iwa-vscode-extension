@@ -1,6 +1,10 @@
 {
     "publisher": "Google",
     "name": "iwa-studio",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/google/iwa-vscode-extension"
+    },
     "displayName": "IWA Studio",
     "description": "",
     "version": "0.0.1",
@@ -18,7 +22,7 @@
                 {
                     "id": "iwa-studio-container",
                     "title": "IWA Studio",
-                    "icon": "src/assets/dashboard_icon.svg"
+                    "icon": "dist/assets/dashboard_icon.svg"
                 }
             ]
         },
