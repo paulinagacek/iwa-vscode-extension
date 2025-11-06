@@ -14,15 +14,17 @@
     "categories": [
         "Other"
     ],
+    "license": "SEE LICENSE IN LICENSE",
     "activationEvents": [],
     "main": "./dist/extension.js",
+    "icon": "dist/assets/icon.png",
     "contributes": {
         "viewsContainers": {
             "activitybar": [
                 {
                     "id": "iwa-studio-container",
                     "title": "IWA Studio",
-                    "icon": "dist/assets/dashboard_icon.svg"
+                    "icon": "dist/assets/side_bar_icon.svg"
                 }
             ]
         },
