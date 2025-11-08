@@ -1,6 +1,10 @@
 {
     "publisher": "Google",
     "name": "iwa-studio",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/google/iwa-vscode-extension"
+    },
     "displayName": "IWA Studio",
     "description": "",
     "version": "0.0.1",
@@ -10,15 +14,17 @@
     "categories": [
         "Other"
     ],
+    "license": "Apache-2.0",
     "activationEvents": [],
     "main": "./dist/extension.js",
+    "icon": "dist/assets/icon.png",
     "contributes": {
         "viewsContainers": {
             "activitybar": [
                 {
                     "id": "iwa-studio-container",
                     "title": "IWA Studio",
-                    "icon": "src/assets/dashboard_icon.svg"
+                    "icon": "dist/assets/side_bar_icon.svg"
                 }
             ]
         },

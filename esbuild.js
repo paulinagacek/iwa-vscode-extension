@@ -15,6 +15,9 @@
  */
 
 const esbuild = require("esbuild");
+const path = require("path");
+const fs = require("fs/promises");
+
 
 const production = process.argv.includes("--production");
 const watch = process.argv.includes("--watch");
@@ -41,6 +44,32 @@ const esbuildProblemMatcherPlugin = {
     },
 };
 
+
+/**
+ * @type {import('esbuild').Plugin}
+ */
+const copyStaticAssetsPlugin = {
+    name: "copy-static-assets",
+    setup(build) {
+        build.onEnd(async (result) => {
+            if (result.errors.length > 0) {
+                console.log("Build failed, skipping asset copy.");
+                return;
+            }
+
+            const inDir = path.resolve(__dirname, "src", "assets");
+            const outDir = path.resolve(__dirname, "dist", "assets");
+
+            try {
+                await fs.cp(inDir, outDir, { recursive: true, force: true });
+                console.log("[copy] Copied assets from src/assets to dist/assets");
+            } catch (err) {
+                console.error("✘ [ERROR] Failed to copy assets:", err);
+            }
+        });
+    },
+};
+
 async function main() {
     const ctx = await esbuild.context({
         entryPoints: ["src/extension.ts"],
@@ -53,7 +82,7 @@ async function main() {
         outdir: "dist/",
         external: ["vscode"],
         logLevel: "silent",
-        plugins: [esbuildProblemMatcherPlugin],
+        plugins: [esbuildProblemMatcherPlugin, copyStaticAssetsPlugin],
     });
     if (watch) {
         await ctx.watch();
