@@ -1,7 +1,12 @@
 .vscode/**
 .vscode-test/**
 out/**
+
+# Ignore node_modules, but include all LICENSE files within it
 node_modules/**
+!node_modules/**/LICENSE*
+!node_modules/**/[Ll]icense*
+
 src/**
 .gitignore
 .yarnrc
